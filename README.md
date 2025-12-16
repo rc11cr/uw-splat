@@ -17,6 +17,7 @@ The below presumes **Ubuntu 22.04** with **CUDA 12.2** installed, but other vers
 ```bash
 git clone git@github.com:rc11cr/uw-splat.git --recursive
 cd uw-splat
+
 ### Create a virtual environment
 
 ```bash
@@ -91,3 +92,4 @@ All hybrid-water components are enabled inside `train.py` via:
     * `AlphaBackgroundLoss`
 
 with their weights and schedules defined in the `WaterConfig` class (DCP annealing, depth-weighted recon, refinement stage, alpha priors, etc.).
+
