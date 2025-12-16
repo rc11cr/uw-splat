@@ -17,27 +17,21 @@ The below presumes **Ubuntu 22.04** with **CUDA 12.2** installed, but other vers
 ```bash
 git clone git@github.com:rc11cr/uw-splat.git --recursive
 cd uw-splat
-
+```
 ### Create a virtual environment
 
 ```bash
 # create a virtual environment
 conda create --name uwsplat_py310 -y python=3.10
 conda activate uwsplat_py310
-
-# install pytorch (system dependent)
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url [https://download.pytorch.org/whl/cu121](https://download.pytorch.org/whl/cu121)
-
-# standard pip dependencies
 pip install -r requirements.txt
-
-# install submodule dependencies
 pip install submodules/diff-gaussian-rasterization
 pip install submodules/simple-knn
+```
 ## Data
 
-**SeaThru-NeRF dataset** from [https://sea-thru-nerf.github.io/](https://sea-thru-nerf.github.io/)
-
+**SeaThru-NeRF dataset** 
 To keep consistency across different models, we recomputed the camera intrinsic/extrinsic parameters and performed distortion corrections using COLMAP's `image_undistorter` on the SeaThru-NeRF dataset:
 
 ```bash
@@ -46,6 +40,7 @@ colmap image_undistorter \
   --input_path /your_path_to_dataset/SeathruNeRF_dataset/IUI3-RedSea/colmap/sparse/0 \
   --output_path /your_path_to_dataset/undistorted_seathrunerf_dataset/IUI3-RedSea \
   --output_type COLMAP
+```
 ## Train a model
 
 The training script builds on the original INRIA 3D Gaussian Splatting code, and **always** trains both:
@@ -69,6 +64,7 @@ python train.py \
   --iterations 30000 \
   --eval \
   -r 1
+```
 **Notes:**
 
 * `-s` / `--source_path` : dataset root (must contain `images` and `sparse/0`).
@@ -92,4 +88,5 @@ All hybrid-water components are enabled inside `train.py` via:
     * `AlphaBackgroundLoss`
 
 with their weights and schedules defined in the `WaterConfig` class (DCP annealing, depth-weighted recon, refinement stage, alpha priors, etc.).
+
 
