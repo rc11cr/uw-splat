@@ -16,5 +16,6 @@ The below presumes **Ubuntu 22.04** with **CUDA 12.2** installed, but other vers
 ### Clone the repo
 
 ```bash
-git clone git@github.com:<your-username>/uw-splat.git --recursive
+git clone git@github.com:rc11cr/uw-splat.git --recursive
 cd uw-splat
+
